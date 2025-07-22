@@ -30,7 +30,7 @@ A modular Java Spring Boot application that enables users to upload either **aud
 ![Image Upload](screenshots/image-upload.png)
 
 ### Upload Audio  
-![Audio Upload](screenshots/audio-upload.wav)
+![Audio Upload](screenshots/audio-upload.mp3)
 
 ### Output Section  
 - Transcription  
