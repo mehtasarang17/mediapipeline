@@ -21,11 +21,17 @@ configurations {
 
 repositories {
     mavenCentral()
+    flatDir {
+        dirs 'lib'
+    }
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation fileTree(dir: 'lib', include: ['*.jar'])
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    implementation 'net.sourceforge.tess4j:tess4j:5.4.0'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'

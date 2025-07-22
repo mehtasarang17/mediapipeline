@@ -1,10 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Media Pipeline - Receptro.AI</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    h1 {
+      text-align: center;
+      color: #34495e;
+    }
+    .form-section {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .upload-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    .upload-box h2 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    .section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .section h2 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    .audio-player {
+      margin-top: 10px;
+      width: 100%;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1c5980;
+    }
+  </style>
 </head>
 <body>
-$END$
+
+<h1>Modular Media Processing - Receptro.AI</h1>
+
+<div class="form-section">
+  <!-- Audio Upload -->
+  <div class="upload-box">
+    <h2>Upload Audio</h2>
+    <form method="post" enctype="multipart/form-data" th:action="@{/process-audio}">
+      <input type="file" name="file" accept="audio/*" required />
+      <button type="submit">Transcribe Audio</button>
+    </form>
+  </div>
+
+  <!-- Image Upload -->
+  <div class="upload-box">
+    <h2>Upload Image</h2>
+    <form method="post" enctype="multipart/form-data" th:action="@{/process-image}">
+      <input type="file" name="file" accept="image/*" required />
+      <button type="submit">Extract & Interpret</button>
+    </form>
+  </div>
+</div>
+
+<!-- Transcription Section -->
+<div th:if="${transcription}" class="section">
+  <h2>Transcription</h2>
+  <p th:text="${transcription}"></p>
+</div>
+
+<!-- Intent Section -->
+<div th:if="${intent}" class="section">
+  <h2>Intent</h2>
+  <p th:text="${intent}"></p>
+</div>
+
+<!-- Parameters Section -->
+<div th:if="${parameters}" class="section">
+  <h2>Parameters</h2>
+  <ul>
+    <li th:each="parameter : ${parameters}" th:text="|${parameter.key}: ${parameter.value}|"></li>
+  </ul>
+</div>
+
+<!-- Audio Section -->
+<div th:if="${audioPath}" class="section">
+  <h2>Synthesized Audio</h2>
+  <audio controls class="audio-player">
+    <source th:src="@{${audioPath}}" type="audio/wav" />
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
 </body>
 </html>
