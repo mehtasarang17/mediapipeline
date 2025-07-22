@@ -38,17 +38,21 @@ A modular Java Spring Boot application that enables users to upload either **aud
 - Parameters  
 - Synthesized Audio Playback  
 
-![Output](screenshots/output.png)
+![Output](screenshots/output/audio-output(1).png)
+![Output](screenshots/output/audio-output(2).png)
+![Output](screenshots/output/image-output(1).png)
+![Output](screenshots/output/image-output(2).png)
 
 ## How It Works
 
-1. Upload an audio (`.wav`,`.mp3`) or image (`.png`) file
-2. The backend:
+1. Add your own OpenAPI key in application.properties
+2. Upload an audio (`.wav`,`.mp3`) or image (`.png`) file
+3. The backend:
    - Uses Whisper for audio transcription
    - Uses Tess4J for OCR on images
-3. Extracts intent and parameters from the transcribed text
-4. Generates a `.wav` audio file from the interpreted text
-5. Displays all results in a responsive web page
+4. Extracts intent and parameters from the transcribed text
+5. Generates a `.wav` audio file from the interpreted text
+6. Displays all results in a responsive web page
 
 ## Future Enhancements
 
